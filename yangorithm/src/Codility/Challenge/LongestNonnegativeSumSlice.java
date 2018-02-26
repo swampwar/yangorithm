@@ -22,7 +22,7 @@ public class LongestNonnegativeSumSlice {
 				int newLength = to-from+1;
 				sum += A[to];
 
-				if(sum >= 0 && newLength > length){
+				if(newLength > length && sum >= 0){
 					length = newLength;
 				}
 			}
