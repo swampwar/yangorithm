@@ -1,5 +1,7 @@
 package Codility.Challenge;
 
+import java.util.Hashtable;
+
 public class LongestNonnegativeSumSlice {
 	
 	public static void main(String[] args) {
@@ -12,6 +14,7 @@ public class LongestNonnegativeSumSlice {
 		System.out.println(new LongestNonnegativeSumSlice().solution(C)); // 0
 	}
 	
+	// Correctness 100%, Performance 63%, Task Score 81%
 	public int solution(int[] A){
 		int length = 0;
 		for(int from=0; from<A.length; from++){
@@ -29,6 +32,24 @@ public class LongestNonnegativeSumSlice {
 			sum = 0;
 		}
 		return length;
+	}
+	
+	// other solution...
+	public int solution_other(int[] A){
+        int sum = 0;
+        int maxslice = 0;
+        Hashtable<Integer,Integer> sumindex = new Hashtable<Integer,Integer>();
+         
+        for(int i = 0; i<A.length; i++) { 
+            sum += A[i];
+            if(sum >= 0)
+                maxslice = i + 1;
+            else if(sumindex.containsKey(sum))
+                maxslice = Math.max(maxslice, i - (int)sumindex.get(sum));
+            else
+                sumindex.put(sum,i);
+        }
+        return maxslice;
 	}
 }
 
