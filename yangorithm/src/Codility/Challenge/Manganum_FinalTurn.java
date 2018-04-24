@@ -7,11 +7,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Manganum_FinalTurn {
+	static int sumScore = 0;
+	
 	public static void main(String[] args) {
 
 		int[] X = { 3, 5, 1, 6 };
 		int[] Y = { 1, 3, 3, 8 };
 		String T = "Xpqp";
+		
+		System.out.println(Arrays.toString(X));
+		System.out.println(Arrays.toString(Y));
 		System.out.println(new Manganum_FinalTurn().solution(X, Y, T));
 		
 		int[] X2 = {0, 3, 5, 1, 6};
@@ -67,8 +72,8 @@ public class Manganum_FinalTurn {
 			
 			if(pointIdx != -1) {
 				if(isPoint(X, Y, moved_queen_x+1, moved_queen_y+1) == -1) {
-					right_point[0] = moved_queen_x;
-					right_point[1] = moved_queen_y;
+					right_point[0] = moved_queen_x+1;
+					right_point[1] = moved_queen_y+1;
 					right_point[2] = score + getScore(T.charAt(pointIdx));
 					
 					System.out.println("get right point");
@@ -104,8 +109,8 @@ public class Manganum_FinalTurn {
 			int pointIdx = isPoint(X, Y, moved_queen_x, moved_queen_y);
 			if(pointIdx != -1) {
 				if(isPoint(X, Y, moved_queen_x-1, moved_queen_y+1) == -1) {
-					left_point[0] = moved_queen_x;
-					left_point[1] = moved_queen_y;
+					left_point[0] = moved_queen_x-1;
+					left_point[1] = moved_queen_y+1;
 					left_point[2] = score + getScore(T.charAt(pointIdx));
 					
 					System.out.println("get left point");
@@ -123,62 +128,56 @@ public class Manganum_FinalTurn {
 		return left_point;
 	}
 	
-
+	public void searchPoint(int[] X, int[] Y, int[] queen, String T){
+		int max_y = getMaxValue(Y);
+		int[] temp_right_queen = Arrays.copyOfRange(queen, 0, queen.length);
+		int[] temp_left_queen = Arrays.copyOfRange(queen, 0, queen.length);
+		
+	}
+	
 	public int solution(int[] X, int[] Y, String T){
 		int queenIdx = T.indexOf('X');
-		int[] queen = {X[queenIdx],Y[queenIdx]};
 		int score = 0;
-
+		int[] queen = {X[queenIdx],Y[queenIdx], score};
+		
 		int[] right_point = getRightPoint(X, Y, queen, score, T);
 		int[] left_point = getLeftPoint(X, Y, queen, score, T);
 		
-		// 1. get access point 
-		/*
-		int min_distX_right = 10;
-		int min_distX_left = 10;
-		Integer[] r_point = new Integer[2];
-		Integer[] l_point = new Integer[2];
-		ArrayList<Integer[]> access_point_list = new ArrayList<Integer[]>();
+		searchPoint(X, Y, queen, T);
 		
-		for(int idx=0; idx< X.length; idx++){
-			Integer[] point = {X[idx], Y[idx]};
-			int distX = point[0] - queen[0];
-			int distY = point[1] - queen[1];
-			
-			if(distY <= 0) continue; // 위에줄이 아니면 재낀다 
-			
-			// 대각선 && 인접point 없음 && 제일 가까운놈
-			if(Math.abs(distX) == distY){
-				if(distX > 0){ // 양놈
-					if(Math.abs(distX) < min_distX_right){
-						min_distX_right = distX;
-						if(!isPoint(X,Y,point[0]+1,point[1]+1)){
-							r_point = point;
-						}
-					}
-				}else if(distX < 0){ // 음놈
-					if(Math.abs(distX) < min_distX_left){
-						min_distX_left = Math.abs(distX);
-						if(!isPoint(X,Y,point[0]-1,point[1]+1)){
-							l_point = point;
-						}
-					}
-				}
-			}
+		if(right_point[0] + right_point[1] != 0){
+			goNextStep(X, Y, right_point, right_point[2], T);
 		}
-		
-		access_point_list.add(l_point);
-		access_point_list.add(r_point);
-		for(int i=0; i<access_point_list.size(); i++){
-			System.out.println(Arrays.toString(access_point_list.get(i)));
+		if(left_point[0] + left_point[1] != 0){
+			goNextStep(X, Y, left_point, left_point[2], T);
 		}
-		*/
-		// 2. sum point
-		
-		
-		// 
 		
 		return 0;
+	}
+	
+	public void goNextStep(int[] X, int[] Y, int[] queen, int score, String T){
+		int max_y = getMaxValue(Y);
+		
+		while(queen[1] < max_y){
+			int[] right_point = getRightPoint(X, Y, queen, score, T);
+			if(right_point[0] + right_point[1] == 0){
+				if(sumScore < right_point[2]){
+					sumScore = right_point[2];
+				}
+			}else{
+				goNextStep(X, Y, right_point, right_point[2], T);
+			}
+			
+			int[] left_point = getLeftPoint(X, Y, queen, score, T);
+			if(left_point[0] + left_point[1] == 0){
+				if(sumScore < left_point[2]){
+					sumScore = left_point[2];
+				}
+			}else{
+				goNextStep(X, Y, left_point, left_point[2], T);
+			}
+			
+		}
 	}
 	
 
