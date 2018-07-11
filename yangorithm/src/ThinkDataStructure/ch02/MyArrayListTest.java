@@ -188,9 +188,7 @@ public class MyArrayListTest {
 	 */
 	@Test
 	public void testRemoveObject() {
-		System.out.println(Arrays.toString(mylist.toArray()));
 		boolean flag = mylist.remove(new Integer(2));
-		System.out.println(Arrays.toString(mylist.toArray()));
 		assertThat(flag, equalTo(true));
 		assertThat(mylist.size(), is(2));
 		assertThat(mylist.get(1), is(new Integer(3)));
