@@ -42,7 +42,7 @@ public class WikiNodeExample {
 
 		iterativeDFS(firstPara);
 		System.out.println();
-
+		
 		Iterable<Node> iter = new WikiNodeIterable(firstPara);
 		for (Node node: iter) {
 			if (node instanceof TextNode) {
