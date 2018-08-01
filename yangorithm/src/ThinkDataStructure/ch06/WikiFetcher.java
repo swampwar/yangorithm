@@ -14,6 +14,8 @@ public class WikiFetcher {
 
 	private static WikiFetcher wikifetcher = null;
 	
+	private WikiFetcher() {}
+	
 	public static WikiFetcher getInstance() {
 		if(wikifetcher == null)
 			wikifetcher = new WikiFetcher();
