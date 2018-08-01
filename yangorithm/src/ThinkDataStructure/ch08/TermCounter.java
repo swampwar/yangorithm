@@ -1,6 +1,5 @@
 package ThinkDataStructure.ch08;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +7,6 @@ import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
-import ThinkDataStructure.ch06.WikiFetcher;
 import ThinkDataStructure.ch06.WikiNodeIterable;
 
 public class TermCounter {
