@@ -1,12 +1,15 @@
 package ThinkDataStructure.ch08;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
+import ThinkDataStructure.ch06.WikiFetcher;
 import ThinkDataStructure.ch06.WikiNodeIterable;
 
 public class TermCounter {
@@ -16,7 +19,27 @@ public class TermCounter {
 	
 	public TermCounter(String label) {
 		this.label = label;
-		map = new HashMap();
+		map = new HashMap<String, Integer>();
+	}
+	
+	public String getLabel() {
+		return this.label;
+	}
+	
+	/**
+	 * Returns the total of all counts. 
+	 * 
+	 * @return
+	 */
+	public int size() {
+		int rsltCountSum = 0;
+		
+		Set<String> keySet = keySet();
+		for(String term : keySet) {
+			rsltCountSum += get(term);
+		}
+		
+		return rsltCountSum;
 	}
 	
 	public Integer get(String term) {
@@ -28,7 +51,7 @@ public class TermCounter {
 	}
 	
 	public void incrementTermCount(String term) {
-		map.put(term, map.get(term)+1);
+		map.put(term, get(term)+1);
 	}
 	
 	public void processElements(Elements paragraphs) {
@@ -55,4 +78,30 @@ public class TermCounter {
 		}
 	}
 	
+	public Set<String> keySet(){
+		return map.keySet();
+	}
+
+	public void printCounts() {
+		for(String key : keySet()) {
+			Integer count = get(key);
+			System.out.println(key + ", " + count);
+		}
+		System.out.println("Total of all counts = " + size());
+	}
+	
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException {
+		String url = "https://en.wikipedia.org/wiki/Java_(programming_language)";
+
+		WikiFetcher wf = WikiFetcher.getInstance();
+		Elements paragraphs = wf.fetchWikipedia(url);
+
+		TermCounter counter = new TermCounter(url.toString());
+		counter.processElements(paragraphs);
+		counter.printCounts();
+	}
 }
