@@ -22,13 +22,12 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 	}
 	
 	public void makeMaps(int k) {
-		// coded by YJS
+		// helper method, coded by YJS
 		maps = new ArrayList<MyLinearMap<K, V>>();
 		for(int i=0; i<k; i++) {
 			maps.add(new MyLinearMap<K, V>());
 		}
 	}
-	
 	
 	/**
 	 * Object key의 hashCode를 이용하여 MapList에서 Map을 리턴한다.
