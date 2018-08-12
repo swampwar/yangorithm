@@ -26,7 +26,7 @@ public class MyLinearMapTest {
 		map.put("Two", 2);
 		map.put("Three", 3);
 		map.put(null, 0);
-		System.out.println("SETUP OK..");
+		System.out.println("MyLinearMapTest SETUP OK..");
 	}
 	
 	@Test
@@ -40,6 +40,13 @@ public class MyLinearMapTest {
 		assertTrue(map.containsKey("Three"));
 		assertTrue(map.containsKey(null));
 		assertFalse(map.containsKey("Four"));
+	}
+	
+	@Test
+	public void testContainsValue() {
+		assertThat(map.containsValue(3), is(true));
+		assertThat(map.containsValue(0), is(true));
+		assertThat(map.containsValue(4), is(false));
 	}
 	
 	@Test

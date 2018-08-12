@@ -99,7 +99,7 @@ public class MyLinearMap<K, V> implements Map<K, V> {
 
 	@Override
 	public V remove(Object key) {
-		// 구현 by YJS
+		// coded by YJS
 		Entry entry = findEntry(key);
 
 		if(entry == null) return null; // key에 해당하는 데이터가 없으면 null리턴
