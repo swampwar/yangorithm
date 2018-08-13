@@ -124,6 +124,8 @@ public class MyLinearMap<K, V> implements Map<K, V> {
 		return set;
 	}
 	
+	
+	
 	public class Entry implements Map.Entry<K, V> {
 		private K key;
 		private V value;
@@ -146,6 +148,10 @@ public class MyLinearMap<K, V> implements Map<K, V> {
 			value = newValue;
 			return value;
 		}
+	}
+	
+	public Collection<? extends java.util.Map.Entry<K, V>> getEntries() {
+		return entries;
 	}
 
 	public static void main(String[] args) {

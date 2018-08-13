@@ -14,7 +14,7 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 	protected List<MyLinearMap<K, V>> maps;
 	
 	public MyBetterMap() {
-		makeMaps(10); // default maps size 10
+		makeMaps(1); // default maps size 1
 	}
 	
 	public MyBetterMap(int k) {
@@ -149,5 +149,9 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 			set.addAll((Set<V>) map.values());
 		}
 		return set;
+	}
+	
+	public int sizeOfMaps() {
+		return this.maps.size();
 	}
 }
