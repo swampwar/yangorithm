@@ -150,8 +150,4 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 		}
 		return set;
 	}
-	
-	public int sizeOfMaps() {
-		return this.maps.size();
-	}
 }

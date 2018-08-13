@@ -50,6 +50,5 @@ public class MyHashMap<K, V> extends MyBetterMap<K, V> implements Map<K, V>{
 		}
 		Integer value = map.get("3");
 		System.out.println(value);
-		System.out.println(map.sizeOfMaps());
 	}
 }
