@@ -9,7 +9,7 @@ import ThinkDataStructure.ch10.MyBetterMap;
 public class MyHashMap<K, V> extends MyBetterMap<K, V> implements Map<K, V>{
 	
 	// map 1개당 entry 갯수의 임계치
-	private static final double FACTOR = 1.0;
+	protected static final double FACTOR = 1.0;
 
 	@Override
 	public V put(K key, V value) { // coded by YJS
@@ -30,7 +30,7 @@ public class MyHashMap<K, V> extends MyBetterMap<K, V> implements Map<K, V>{
 		int bfMapSize = maps.size();
 		int afMapSize = bfMapSize*2;
 		
-		System.out.println("rehash.... after size : " + afMapSize);
+//		System.out.println("rehash.... after size : " + afMapSize);
 		
 		List<MyLinearMap<K, V>> oldMaps = maps;
 		makeMaps(afMapSize);

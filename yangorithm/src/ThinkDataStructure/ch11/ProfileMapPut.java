@@ -14,8 +14,8 @@ public class ProfileMapPut {
 	 */
 	public static void main(String[] args) {
 //		profileHashMapPut();
-		profileMyHashMapPut();
-//		profileMyFixedHashMapPut();
+//		profileMyHashMapPut();
+		profileMyFixedHashMapPut();
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class ProfileMapPut {
 			Map<String, Integer> map;
 
 			public void setup(int n) {
-//				map = new MyFixedHashMap<String, Integer>();
+				map = new MyFixedHashMap<String, Integer>();
 			}
 
 			public void timeMe(int n) {
