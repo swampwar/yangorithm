@@ -1,4 +1,4 @@
-package Programmers.Level4.BestSet;
+package Level4.BestSet;
 
 import java.util.Arrays;
 

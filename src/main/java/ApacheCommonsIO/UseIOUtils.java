@@ -1,4 +1,4 @@
-package lib.ApacheCommonsIO;
+package ApacheCommonsIO;
 
 import org.apache.commons.io.IOUtils;
 
